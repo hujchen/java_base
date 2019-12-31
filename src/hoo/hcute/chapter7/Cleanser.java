@@ -1,0 +1,85 @@
+package hoo.hcute.chapter7;
+
+public class Cleanser {
+
+    private String s = "Cleanser ";
+
+    public void append(String msg){
+        s += msg;
+    }
+
+    public void dilute(){
+        append("dilute() ");
+    }
+
+    public void apply(){
+        append("apply() ");
+    }
+
+    public void scrub(){
+        append("scrub() " );
+    }
+
+    @Override
+    public String toString() {
+        return s;
+    }
+
+    public static void main(String[] args) {
+        Cleanser x = new Cleanser();
+        x.dilute();
+        x.apply();
+        x.scrub();
+        System.out.println(x);
+    }
+
+}
+
+class Detergent extends Cleanser {
+
+    public void scrub(){
+        append("Detergent.scrub() ");
+        super.scrub();
+    }
+
+    public void foam(){
+        append("foam() ");
+    }
+
+    public static void main(String[] args) {
+        Detergent x = new Detergent();
+        x.dilute();
+        x.apply();
+        x.scrub();
+        x.foam();
+        System.out.println(x);
+        System.out.println("Testing base class:");
+        Cleanser.main(args);
+    }
+
+}
+
+
+class Sterilize extends Detergent{
+
+    public void scrub(){
+        append("Sterilize.scrub() ");
+        super.scrub();
+    }
+
+    public void sterilize(){
+        append("sterilize() ");
+    }
+
+    public static void main(String[] args) {
+        Sterilize s = new Sterilize();
+        s.dilute();
+        s.apply();
+        s.scrub();
+        s.foam();
+        s.sterilize();
+        System.out.println(s);
+        System.out.println("Test Sterilize class:");
+        Detergent.main(args);
+    }
+}
